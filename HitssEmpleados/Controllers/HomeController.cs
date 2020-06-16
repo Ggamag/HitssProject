@@ -34,6 +34,8 @@ namespace HitssEmpleados.Controllers
         public JsonResult FiltrarEmpleados(int Id, string Name, string FechaIni, string FechaFin, int Sucursal)
         {
             var Filtrado = MTD.FilterEmpleados(Id, Name, FechaIni, FechaFin, Sucursal);
+            //var Filtrado = MTD.FechaEmpleados(FechaIni, FechaFin);
+
             return Json(Filtrado, JsonRequestBehavior.AllowGet);
         }
 

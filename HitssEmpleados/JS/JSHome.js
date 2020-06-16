@@ -4,6 +4,16 @@
 
 });
 
+$('#TxtFI').datepicker({
+    format: "dd/mm/yyyy",
+    language: "es"
+});
+
+$('#TxtFF').datepicker({
+    format: "dd/mm/yyyy",
+    language: "es"
+});
+
 function LoadSucursales() {
     $.post("/Home/GetCbxSucursales", function (data) {
         var OPT = "";

@@ -38,20 +38,34 @@ namespace Bussines
             {
                 if(FechaIni == "") { FechaIni = "01/01/2010"; }
                 if(FechaFin == "") { FechaFin = DateTime.Now.ToString(); }
-
-
-                DateTime FINI = Convert.ToDateTime(FechaIni);
-                DateTime FFIN = Convert.ToDateTime(FechaFin);
+                
                 var Lista = DB.Database.SqlQuery<LEmpleados>("SP_FILTER_EMPLEADOS @ID, @NAME, @FECHAINI, @FECHAFIN, @SUC",
                                                                new SqlParameter("@ID", Id),
                                                                new SqlParameter("@NAME", Name),
-                                                               new SqlParameter("@FECHAINI", FINI),
-                                                               new SqlParameter("@FECHAFIN", FFIN),
+                                                               new SqlParameter("@FECHAINI", FechaIni),
+                                                               new SqlParameter("@FECHAFIN", FechaFin),
                                                                new SqlParameter("@SUC", Sucursal)
                                                              ).ToList();
                 return Lista;
             }
         }
+
+        public List<LEmpleados> FechaEmpleados(string FechaIni, string FechaFin)
+        {
+            using (var DB = new BDHitssEntities())
+            {
+                if (FechaIni == "") { FechaIni = "01/01/2010"; }
+                if (FechaFin == "") { FechaFin = DateTime.Now.ToString(); }
+
+                var Lista = DB.Database.SqlQuery<LEmpleados>("SP_FILTRAR_FECHA @INI, @FIN",
+                                                              new SqlParameter("@INI", FechaIni),
+                                                              new SqlParameter("@FIN", FechaFin)
+                                                             ).ToList();
+                return Lista;
+            }
+        }
+
+
 
 
     }
